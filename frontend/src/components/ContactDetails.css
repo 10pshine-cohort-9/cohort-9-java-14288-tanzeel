@@ -1,0 +1,59 @@
+.contact-details-header {
+  background-color: #1d3035;
+  border-bottom: 1px solid #2d4549;
+}
+
+.contact-details-body {
+  padding: 24px;
+}
+
+.contact-header h3 {
+  color: #f2eee7;
+}
+
+.contact-header p {
+  font-size: 14px;
+}
+
+.contact-section h5 {
+  color: #f2eee7;
+  font-size: 16px;
+}
+
+.contact-list {
+  margin-left: 0;
+}
+
+.contact-item {
+  padding: 12px;
+  background-color: #1d3035;
+  border-radius: 9px;
+  border-left: 3px solid #e05d44;
+}
+
+.contact-item a {
+  color: #f0785d;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.badge-light {
+  background-color: #315458 !important;
+  color: #eef5f0 !important;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .contact-details-body {
+    padding: 16px;
+  }
+
+  .contact-item {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,73 @@
+.navbar-custom,
+.navbar-custom.bg-white {
+  border-bottom: 1px solid #315e61;
+  padding: 13px 0;
+  background: #0b1519 !important;
+  box-shadow: 0 4px 18px rgba(17, 48, 50, 0.16) !important;
+}
+
+.navbar-custom .navbar-brand {
+  color: #fffdf9 !important;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.navbar-brand-custom {
+  gap: 10px;
+}
+
+.company-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #e05d44;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand-copy strong {
+  font-size: 17px;
+}
+
+.brand-copy small {
+  margin-top: 3px;
+  color: #8ca2a2;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navbar-custom .nav-link {
+  font-weight: 500;
+  margin-left: 12px;
+}
+
+.navbar-custom .dropdown-toggle {
+  color: #fffdf9 !important;
+  border-radius: 8px;
+}
+
+.navbar-custom .dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-custom .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.navbar-custom .dropdown-toggle::after {
+  display: none;
+}
