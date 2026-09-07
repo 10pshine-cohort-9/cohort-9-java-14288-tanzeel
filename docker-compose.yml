@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # SQL Server Database
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: contact-mgmt-db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourPassword123!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+      - ./database/setup.sql:/setup.sql
+    networks:
+      - contact-network
+    healthcheck:
+      test: ["CMD-SHELL", "/bin/bash -c '</dev/tcp/localhost/1433'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: contact-mgmt-api
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:sqlserver://mssql:1433;databaseName=ContactManagementDB;encrypt=true;trustServerCertificate=true"
+      SPRING_DATASOURCE_USERNAME: "sa"
+      SPRING_DATASOURCE_PASSWORD: "YourPassword123!"
+      APP_JWT_SECRET: "mySecretKeyForContactManagementSystemWithAVeryLongKeyToEnsureStrongEncryption12345"
+      APP_JWT_EXPIRATION: "86400000"
+    ports:
+      - "8080:8080"
+    depends_on:
+      mssql:
+        condition: service_healthy
+    networks:
+      - contact-network
+    volumes:
+      - ./backend/logs:/app/logs
+
+  # Frontend Application
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    container_name: contact-mgmt-web
+    environment:
+      VITE_API_BASE_URL: "http://localhost:8080/api"
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - contact-network
+
+volumes:
+  mssql_data:
+
+networks:
+  contact-network:
+    driver: bridge
